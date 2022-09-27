@@ -1,0 +1,36 @@
+body {
+    width: 70%;
+    margin: 0 auto;
+}
+.search-cont {
+    padding: 20px 0;
+}
+table,th,td {
+    border: 1px solid black;
+}
+th,td {
+    padding: 3px 27px;
+}
+.in-key, .bt-search {
+    padding: 7px 17px;
+}
+.bt-search {
+    background-color: rgb(29, 167, 75);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.bt-search:hover {
+    background-color: greenyellow;
+}
+.bt-detail {
+    padding: 7px 17px;
+    background-color: rgb(2, 120, 167);
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.bt-detail:hover {
+    background-color: rgb(88, 208, 255);
+}
