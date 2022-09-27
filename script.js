@@ -10,12 +10,18 @@ function getKey() {
 }
 
 function getRslt() {
+    clPg();
     const url = getKey();
-    console.log(url);
     const ajax = new XMLHttpRequest();
     ajax.onload = function () {
         const data = JSON.parse(ajax.responseText);
-        disRsl(data.hero);
+        if (data.status ===200 && data.rowCount > 0) {
+            disRsl(data.hero);
+        } else if (data.status ===200 && data.rowCount === 0) {
+            keyWrong();
+        } else {
+            shErr();
+        }
     }
     ajax.open('GET', url);
     ajax.send();
@@ -24,7 +30,6 @@ function getRslt() {
 function disRsl(data) {
     let hero = '';
     data.map(e => {
-        console.log(e);
         hero += `<tr>
                     <td>${e['hero_name']}</td>
                     <td>${e['hero_role']}</td>
@@ -34,4 +39,16 @@ function disRsl(data) {
                 </tr>`;
     });
     tblBd.innerHTML = hero;
+}
+
+function clPg() {
+    tblBd.innerHTML='';
+}
+
+function keyWrong() {
+    alert("You input wrong keyword");
+}
+
+function shErr() {
+    alert('There is something wrong, please retry!');
 }
