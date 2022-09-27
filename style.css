@@ -5,13 +5,17 @@ body {
 .search-cont {
     padding: 20px 0;
 }
-table,th,td {
+table,
+th,
+td {
     border: 1px solid black;
 }
-th,td {
+th,
+td {
     padding: 3px 27px;
 }
-.in-key, .bt-search {
+.in-key,
+.bt-search {
     padding: 7px 17px;
 }
 .bt-search {
