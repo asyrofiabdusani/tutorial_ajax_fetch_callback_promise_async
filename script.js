@@ -4,12 +4,18 @@ const tblBd = document.querySelector(".tbl-body");
 
 btSrc.addEventListener("click", async () => {
     clPage();
-    const prom = await getRslt(getKey());
-    const data = await prom.json();
-    if (data.rowCount > 0) {
-        disRsl(data.hero);
-    } else {
-        shErr("You input wrong keyword");
+    try {
+        const prom = await getRslt(getKey());
+        const data = await prom.json();
+        if (data.rowCount > 0) {
+            disRsl(data.hero);
+        } else {
+            shErr("You input wrong keyword");
+        }
+    } catch {
+        shErr("There is something wrong, please retry!");
+    } finally {
+        console.log("Done");
     }
 });
 
