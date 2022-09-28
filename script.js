@@ -2,19 +2,15 @@ const btSrc = document.querySelector(".bt-search");
 const keyword = document.querySelector(".in-key");
 const tblBd = document.querySelector(".tbl-body");
 
-btSrc.addEventListener("click", () => {
+btSrc.addEventListener("click", async () => {
     clPage();
-    const prom = getRslt(getKey());
-    prom.then((response) => response.json())
-        .then((data) => {
-            if (data.rowCount > 0) {
-                disRsl(data.hero);
-            } else {
-                shErr("You input wrong keyword");
-            }
-        })
-        .catch(() => shErr("There is something wrong, please retry!"))
-        .finally(() => console.log("Done"));
+    const prom = await getRslt(getKey());
+    const data = await prom.json();
+    if (data.rowCount > 0) {
+        disRsl(data.hero);
+    } else {
+        shErr("You input wrong keyword");
+    }
 });
 
 function getRslt(url) {
