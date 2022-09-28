@@ -5,35 +5,20 @@ const tblBd = document.querySelector(".tbl-body");
 btSrc.addEventListener("click", () => {
     clPage();
     const prom = getRslt(getKey());
-    prom.then((data) => {
-        if (data.rowCount > 0) {
-            disRsl(data.hero);
-        } else {
-            shErr("You input wrong keyword");
-        }
-    })
-        .catch(function (err) {
-            shErr(err);
+    prom.then((response) => response.json())
+        .then((data) => {
+            if (data.rowCount > 0) {
+                disRsl(data.hero);
+            } else {
+                shErr("You input wrong keyword");
+            }
         })
-        .finally(() => {
-            console.log("Done");
-        });
+        .catch(() => shErr("There is something wrong, please retry!"))
+        .finally(() => console.log("Done"));
 });
 
 function getRslt(url) {
-    let prom = new Promise(function (resolve, reject) {
-        const ajax = new XMLHttpRequest();
-        ajax.onload = function () {
-            if (ajax.status === 200) {
-                let data = JSON.parse(ajax.responseText);
-                resolve(data);
-            } else {
-                reject("There is something wrong, please retry!");
-            }
-        };
-        ajax.open("GET", url);
-        ajax.send();
-    });
+    let prom = fetch(url);
     return prom;
 }
 
