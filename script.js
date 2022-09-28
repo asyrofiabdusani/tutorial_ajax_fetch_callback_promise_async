@@ -9,9 +9,15 @@ btSrc.addEventListener("click", () => {
         if (data.rowCount > 0) {
             disRsl(data.hero);
         } else {
-            keyWrong();
+            shErr("You input wrong keyword");
         }
-    });
+    })
+        .catch(function (err) {
+            shErr(err);
+        })
+        .finally(() => {
+            console.log("Done");
+        });
 });
 
 function getRslt(url) {
@@ -22,7 +28,7 @@ function getRslt(url) {
                 let data = JSON.parse(ajax.responseText);
                 resolve(data);
             } else {
-                reject(shErr());
+                reject("There is something wrong, please retry!");
             }
         };
         ajax.open("GET", url);
@@ -56,10 +62,6 @@ function clPage() {
     tblBd.innerHTML = "";
 }
 
-function keyWrong() {
-    alert("You input wrong keyword");
-}
-
-function shErr() {
-    alert("There is something wrong, please retry!");
+function shErr(msg) {
+    alert(msg);
 }
