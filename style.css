@@ -1,6 +1,7 @@
 body {
     width: 70%;
     margin: 0 auto;
+    padding-bottom: 50px;
 }
 .search-cont {
     padding: 20px 0;
@@ -37,4 +38,16 @@ td {
 
 .bt-detail:hover {
     background-color: rgb(88, 208, 255);
+}
+
+.detail-cont {
+    display: none;
+}
+
+.bt-close {
+    margin: 7px 0;
+}
+
+.tb-dtl {
+    background-color: white;
 }
